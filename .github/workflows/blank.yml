@@ -19,10 +19,9 @@ jobs:
       - name: Create Node.js app files
         run: |
           mkdir -p my-node-app
-          cd my-node-app
 
           # Create package.json
-          cat <<EOF > package.json
+          cat <<EOF > my-node-app/package.json
           {
             "name": "my-node-app",
             "version": "1.0.0",
@@ -37,7 +36,7 @@ jobs:
           EOF
 
           # Create app.js
-          cat <<EOF > app.js
+          cat <<EOF > my-node-app/app.js
           const http = require('http');
           const hostname = '127.0.0.1';
           const port = 3000;
@@ -51,6 +50,8 @@ jobs:
           });
           EOF
 
+      - name: Run npm install
+        run: |
           npm install --prefix my-node-app
 
       - name: Commit and push files
